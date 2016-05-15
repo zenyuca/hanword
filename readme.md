@@ -1,0 +1,1 @@
+#### 這是[漢字基因字典](http://www.open-lit.com/bookindex.php?gbid=643)的自適版

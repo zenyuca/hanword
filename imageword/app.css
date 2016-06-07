@@ -1,0 +1,57 @@
+body {
+	font-size: 14px;
+}
+.row {
+	margin: 5px;
+	border-radius: 5px;
+	border: 1px solid;
+}
+.item {
+	margin-top: 10px;
+}
+.img-word {
+	width: 100%;
+}
+.clear-padding {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+.padding-4 {
+	padding: 4px;
+}
+.tab-1 {
+	width: 90px;
+}
+.table {
+	font-size: 13px;
+}
+.table > tbody > tr > td {
+	border: 0px;
+}
+div.panel {
+	padding: 5px;
+	border: 1px solid #DDDDDD;
+	border-top: none;
+}
+div.active {
+	/*border: 1px solid #990000;*/
+}
+.center-block {
+	float: none;
+}
+.error {
+	color: #990000;
+	font-size: 13px;
+	display: inline-block;
+	padding: 10px;
+}
+.center-inner {
+	text-align: center;
+}
+.clear-margin {
+	margin: 0px;
+}
+.margin-ud-15 {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}

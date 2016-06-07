@@ -1,0 +1,93 @@
+<!doctype html>
+<html ng-app="hanword" lang="zh-CN">
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+
+    <script src="lib/js/angular.min.js"></script>
+	<script src="lib/js/jquery.min.js"></script>
+	<script src="lib/js/bootstrap.min.js"></script>
+	<script src="word.js"></script>
+	<script src="pager.js"></script>
+	<script src="app.js"></script>
+    <link rel="stylesheet" href="lib/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="app.css">
+	<title>看圖識字</title>
+  </head>
+  <body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand">看圖識字</a>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+			       <!-- <li ng-class="{active:navCtrl.isSelected('index.html')}"><a ng-click="navCtrl.selectPage('index.html')">首頁<span class="sr-only">(current)</span></a></li> -->
+			    </ul>
+			</div>
+		</div>
+	</nav>
+  	<div class="col-sm-6 col-sx-12 center-block container-fluid" ng-controller="HanwordCtrl as hanwordCtrl">
+  		<div class="rows">
+  			<section class="col-sm-12 col-sx-12 center-block padding-4" ng-controller="PanelCtrl as panelCtrl">
+  				<ul class="nav nav-tabs">
+  					<li ng-class="{active:panelCtrl.isSelected(1)}"><a href ng-click="panelCtrl.selectPanel(1)">列表</a></li>
+  					<li ng-class="{active:panelCtrl.isSelected(2)}"><a href ng-click="panelCtrl.selectPanel(2)">搜索</a></li>
+  				</ul>
+  				<div class="panel" ng-class="{active:panelCtrl.isSelected(1)}" ng-show="panelCtrl.isSelected(1)">
+  					<div class="center-inner">
+	  					<ul class="pagination pagination-sm">
+	  						<li ng-class="{active:hanwordCtrl.isSelectedWord(word)}" ng-click="hanwordCtrl.search(word)" ng-repeat="word in hanwordCtrl.wordPage.subList">
+	  							<a>{{word}}</a>
+	  						</li>
+	  					</ul>
+	  				</div>
+  					<div class="center-inner">
+	  					<ul class="pagination pagination-sm">
+	  						<li ng-class="{disabled: hanwordCtrl.pagerPage.pageMin}" ng-click="!hanwordCtrl.pagerPage.pageMin && hanwordCtrl.pagerPage.prev()">
+	  							<a aria-label="Previous">
+	  								<span aria-hidden="true">&laquo</span>
+	  							</a>
+	  						</li>
+	  						<li ng-class="{active:hanwordCtrl.isSelectedPage(page)}" ng-click="hanwordCtrl.wordPage.toPage(page)" ng-repeat="page in hanwordCtrl.pagerPage.subList">
+	  							<a>{{page}}</a>
+	  						</li>
+	  						<li ng-class="{disabled: hanwordCtrl.pagerPage.pageMax}" ng-click="!hanwordCtrl.pagerPage.pageMax && hanwordCtrl.pagerPage.next()">
+	  							<a aria-label="Next">
+	  								<span aria-hidden="true">&raquo</span>
+	  							</a>
+	  						</li>
+	  						<li>
+	  							<a>
+	  								<span aria-hidden="true">{{hanwordCtrl.wordPage.currentPage}}/{{hanwordCtrl.wordPage.pageSum}}</span>
+	  							</a>
+	  						</li>
+	  					</ul>
+  					</div>
+  				</div>
+  				<div class="panel" ng-class="{active:panelCtrl.isSelected(2)}" ng-show="panelCtrl.isSelected(2)">
+  					<form name="searchForm" class="col-sm-11 col-xs-12 center-block">
+						<div class="form-group margin-ud-15">
+							<label class="sr-only">书名：</label>
+							<div class="input-group input-group-sm">
+								<input class="form-control" type="text" placeholder="請輸入單個漢字" ng-model="hanwordCtrl.word.name" ng-change="" required/>
+								<span class="input-group-addon" ng-click="searchForm.$valid && hanwordCtrl.search(hanwordCtrl.word.name)">搜索</span>
+							</div>
+							<span class="error">{{hanwordCtrl.word.error}}</span>
+						</div>
+					</form>
+  				</div>
+  			</section>
+  		</div>
+		<div class="row">
+			<img class="img-word" ng-src="{{hanwordCtrl.word.image}}"/>
+		</div>
+  	</div>
+  </body>
+</html>

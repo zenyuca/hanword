@@ -19,3 +19,7 @@ Page.prototype.prev = function() {
 Page.prototype.next = function() {
 	return this.toPage(++this.currentPage);
 }
+Page.prototype.setIndex = function(i) {
+	var page = Math.ceil(i / this.pageSize);
+	this.toPage(page);
+}

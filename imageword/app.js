@@ -3,27 +3,6 @@
 
 	app.controller('HanwordCtrl', function() {
 		this.word = {};
-		this.search = function(searchWord) {
-			var name;
-			var image;
-			words.forEach(function(e, i) {
-				if (searchWord === e) {
-					i = '00000' + (i+1);
-					i = i.slice(-5);
-					image = `lib/image/${i}.jpg`;
-					name = e;
-					return;
-				}
-			});
-			if (name) {
-				this.word.name = name;
-				this.word.image = image;
-				this.word.error = '';
-			} else {
-				this.word.error = '提示：系統未收錄此字';
-			}
-		}
-		
 		this.wordPage = new Page(20, words);
 		var pages = [];
 		for (var i = 0; i < this.wordPage.pageSum; i++) {
@@ -38,6 +17,31 @@
 			return this.word.name === selectedWord;
 		}
 
+		this.search = function(searchWord) {
+			var name;
+			var image;
+			var index;
+			words.forEach(function(e, i) {
+				if (searchWord === e) {
+					i = '00000' + (i+1);
+					i = i.slice(-5);
+					image = `lib/image/${i}.jpg`;
+					name = e;
+					index = i;
+					return;
+				}
+			});
+			if (name) {
+				this.word.name = name;
+				this.word.image = image;
+				this.word.error = '';
+				this.wordPage.setIndex(index);
+				this.pagerPage.setIndex(Math.ceil(index / this.wordPage.pageSize));
+			} else {
+				this.word.error = '提示：系統未收錄此字';
+			}
+		}
+		
 		this.init = function() {
 			this.search('日');
 			this.wordPage.toPage(1);

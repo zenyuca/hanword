@@ -50,7 +50,7 @@
 	  				</div>
   					<div class="center-inner">
 	  					<ul class="pagination pagination-sm">
-	  						<li ng-class="{disabled: hanwordCtrl.pagerPage.pageMin}" ng-click="!hanwordCtrl.pagerPage.pageMin && hanwordCtrl.pagerPage.prev()">
+	  						<li ng-class="{disabled: hanwordCtrl.pagerPage.pageMin}" ng-show="!hanwordCtrl.pagerPage.pageMin" ng-click="!hanwordCtrl.pagerPage.pageMin && hanwordCtrl.pagerPage.prev()">
 	  							<a aria-label="Previous">
 	  								<span aria-hidden="true">&laquo</span>
 	  							</a>
@@ -58,7 +58,7 @@
 	  						<li ng-class="{active:hanwordCtrl.isSelectedPage(page)}" ng-click="hanwordCtrl.wordPage.toPage(page)" ng-repeat="page in hanwordCtrl.pagerPage.subList">
 	  							<a>{{page}}</a>
 	  						</li>
-	  						<li ng-class="{disabled: hanwordCtrl.pagerPage.pageMax}" ng-click="!hanwordCtrl.pagerPage.pageMax && hanwordCtrl.pagerPage.next()">
+	  						<li ng-class="{disabled: hanwordCtrl.pagerPage.pageMax}" ng-show="!hanwordCtrl.pagerPage.pageMax" ng-click="!hanwordCtrl.pagerPage.pageMax && hanwordCtrl.pagerPage.next()">
 	  							<a aria-label="Next">
 	  								<span aria-hidden="true">&raquo</span>
 	  							</a>

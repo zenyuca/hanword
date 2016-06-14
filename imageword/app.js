@@ -2,8 +2,11 @@
 	var app = angular.module('hanword', []);
 
 	app.controller('HanwordCtrl', function() {
+		var store = new Store();
+		var key = 'word';
+
 		this.word = {};
-		this.wordPage = new Page(20, words);
+		this.wordPage = new Page(30, words);
 		var pages = [];
 		for (var i = 0; i < this.wordPage.pageSum; i++) {
 			pages.push(i+1);
@@ -23,11 +26,12 @@
 			var index;
 			words.forEach(function(e, i) {
 				if (searchWord === e) {
+					index = i;
+					name = e;
+
 					i = '00000' + (i+1);
 					i = i.slice(-5);
 					image = `lib/image/${i}.jpg`;
-					name = e;
-					index = i;
 					return;
 				}
 			});
@@ -36,16 +40,20 @@
 				this.word.image = image;
 				this.word.error = '';
 				this.wordPage.setIndex(index);
-				this.pagerPage.setIndex(Math.ceil(index / this.wordPage.pageSize));
+				this.pagerPage.setIndex(Math.ceil((index+1) / this.wordPage.pageSize)-1);
+				store.put(key, name);
 			} else {
-				this.word.error = '提示：系統未收錄此字';
+				this.word.name = store.get(key);
+				this.word.error = `提示：系統未收錄【${searchWord}】字`;
 			}
 		}
 		
 		this.init = function() {
-			this.search('日');
-			this.wordPage.toPage(1);
-			this.pagerPage.toPage(1);
+			var name = store.get(key);
+			if (!name) {
+				name = '日';
+			}
+			this.search(name);
 		}
 		this.init();
 	});

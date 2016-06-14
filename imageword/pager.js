@@ -1,4 +1,5 @@
 function Page(pageSize, list) {
+	this.currentPage = 1;
 	this.pageSize = pageSize;
 	this.list = list;
 	this.pageSum = Math.ceil(this.list.length / this.pageSize);
@@ -7,6 +8,7 @@ function Page(pageSize, list) {
 	this.subList = [];
 }
 Page.prototype.toPage = function(page) {
+	if (page < 1 || page > this.pageSum) return;
 	this.currentPage = page;
 	this.pageMin = this.currentPage === 1;
 	this.pageMax = this.currentPage === this.pageSum;
@@ -20,6 +22,6 @@ Page.prototype.next = function() {
 	return this.toPage(++this.currentPage);
 }
 Page.prototype.setIndex = function(i) {
-	var page = Math.ceil(i / this.pageSize);
+	var page = Math.ceil((i+1) / this.pageSize);
 	this.toPage(page);
 }

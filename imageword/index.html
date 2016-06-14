@@ -7,6 +7,7 @@
     <script src="lib/js/angular.min.js"></script>
 	<script src="lib/js/jquery.min.js"></script>
 	<script src="lib/js/bootstrap.min.js"></script>
+	<script src="lib/js/store.js"></script>
 	<script src="word.js"></script>
 	<script src="pager.js"></script>
 	<script src="app.js"></script>
@@ -42,11 +43,11 @@
   				</ul>
   				<div class="panel" ng-class="{active:panelCtrl.isSelected(1)}" ng-show="panelCtrl.isSelected(1)">
   					<div class="center-inner">
-	  					<ul class="pagination pagination-sm">
-	  						<li ng-class="{active:hanwordCtrl.isSelectedWord(word)}" ng-click="hanwordCtrl.search(word)" ng-repeat="word in hanwordCtrl.wordPage.subList">
-	  							<a>{{word}}</a>
-	  						</li>
-	  					</ul>
+	  					<div class="btn-group">
+		  					<button type="button" class="btn btn-sm" ng-class="{'btn-primary':hanwordCtrl.isSelectedWord(word),'btn-default':!hanwordCtrl.isSelectedWord(word)}" ng-click="hanwordCtrl.search(word)" ng-repeat="word in hanwordCtrl.wordPage.subList">
+		  						{{word}}
+		  					</button>
+	  					</div>
 	  				</div>
   					<div class="center-inner">
 	  					<ul class="pagination pagination-sm">

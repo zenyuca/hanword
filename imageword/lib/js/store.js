@@ -14,7 +14,9 @@ Store.prototype.put = function(key, value) {
 Store.prototype.get = function(key) {
 	this.check();
 	var value = localStorage[key];
-	value = value || '';
-	value = JSON.parse(value);
-	return value;
+	if (value) {
+		return JSON.parse(value);
+	} else {
+		return '';
+	}
 }

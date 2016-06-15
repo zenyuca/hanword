@@ -32,6 +32,8 @@ div.panel {
 	padding: 5px;
 	border: 1px solid #DDDDDD;
 	border-top: none;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
 }
 div.active {
 	/*border: 1px solid #990000;*/
@@ -54,4 +56,7 @@ div.active {
 .margin-ud-15 {
 	margin-top: 15px;
 	margin-bottom: 15px;
+}
+.info-tip {
+	color: green;
 }

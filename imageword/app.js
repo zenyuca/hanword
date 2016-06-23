@@ -54,7 +54,7 @@
 				this.pagerPage.setIndex(Math.ceil((index+1) / this.wordPage.pageSize)-1);
 				wordStore.put(name);
 			} else {
-				this.word.name = store.get(key);
+				this.word.name = wordStore.get();
 				this.word.error = `提示：系統未收錄【${searchWord}】字`;
 			}
 		}

@@ -1,7 +1,7 @@
 .center-block {
 	float: none;
 }
-
-.main {
-	border: 1px solid;
+.navbar, .btn, .main {
+  font-family: MingLiu;
+  font-size: 15px;
 }
